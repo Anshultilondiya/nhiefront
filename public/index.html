@@ -1,21 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Web site created using create-react-app"
-    />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!--
+    <head>
+        <meta charset="utf-8" />
+        <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="theme-color" content="#000000" />
+        <meta
+            name="description"
+            content="Web site created using create-react-app"
+        />
+        <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+        <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+        />
+        <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
     -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
+        <script src="https://use.fontawesome.com/b183663d80.js"></script>
+        <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+        <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
       Only files inside the `public` folder can be referenced from the HTML.
@@ -24,12 +29,292 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>React App</title>
-  </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-    <!--
+        <title>Never I Have Ever</title>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;1,300;1,700&display=swap');
+
+            .App {
+                text-align: center;
+            }
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: 'Open Sans', sans-serif;
+            }
+
+            .navbar {
+                background-image: linear-gradient(
+                    137.45deg,
+                    #54b454 0%,
+                    #2f8f83 58.17%,
+                    #00525f 100%
+                );
+                text-align: start;
+                margin: 0;
+                padding: 20px;
+                line-height: 140%;
+                font-size: 200%;
+                color: white;
+                font-weight: bold;
+                letter-spacing: 2px;
+            }
+
+            .game-container {
+                width: 100%;
+                min-height: 80vh;
+                /* overflow: hidden; */
+            }
+
+            .MuiGrid-spacing-xs-3 {
+                width: 100% !important;
+            }
+
+            .player-list {
+                border-right: 2px solid #54b454;
+                height: 100%;
+            }
+
+            .Wrapper {
+                background: #ffb75e;
+                /* fallback for old browsers */
+                background: -webkit-linear-gradient(to right, #ed8f03, #ffb75e);
+                /* Chrome 10-25, Safari 5.1-6 */
+                background: linear-gradient(to right, #ed8f03, #ffb75e);
+                /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+                height: 100vh;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                text-align: center;
+            }
+
+            .homeButtons {
+                display: flex;
+                width: 40%;
+                margin-left: 30%;
+                justify-content: space-around;
+                margin-top: 20px;
+                align-items: center;
+            }
+
+            .homeButtons .btn {
+                min-width: 40% !important;
+            }
+
+            .welcome-screen {
+                width: 60%;
+                margin: auto;
+                /* min-height: 60vh; */
+                background-color: #f4f4f4;
+                padding: 50px;
+                border-radius: 10px;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19),
+                    0 6px 6px rgba(0, 0, 0, 0.23);
+            }
+
+            .welcome-screen .input-field {
+                margin-bottom: 10px;
+            }
+
+            .welcome-screen .form-control:focus {
+                border-color: #28a745;
+                box-shadow: 0 0 0 0.2rem #28a74646;
+            }
+
+            .welcome-screen .input-with-error {
+                display: flex;
+                flex-direction: column;
+                width: 50%;
+                margin: auto;
+            }
+
+            .welcome-screen .error-icon {
+                color: #ed8f03;
+                font-size: 200%;
+                margin-left: 10px;
+            }
+
+            .srv-validation-message {
+                color: rgba(0, 0, 0, 0.479);
+            }
+
+            .input-name {
+                display: flex;
+            }
+
+            .input-name .btn {
+                margin-left: 10px;
+            }
+
+            .gamePage {
+                background: #ffb75e;
+                /* fallback for old browsers */
+                background: -webkit-linear-gradient(to right, #ed8f03, #ffb75e);
+                /* Chrome 10-25, Safari 5.1-6 */
+                background: linear-gradient(to right, #ed8f03, #ffb75e);
+                min-height: 100vh;
+                /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+            }
+
+            .gamePage nav {
+                padding: 10px 50px;
+                background-color: #f4f4f4;
+                display: flex;
+                justify-content: space-between;
+            }
+
+            .gamePage nav .btn {
+                padding: 2px 30px;
+            }
+
+            .player {
+                margin: 20px;
+                display: flex;
+                align-items: center;
+            }
+
+            .player .avatar {
+                height: 50px;
+                flex: 0 1 50px;
+                margin-right: 20px;
+            }
+
+            .player .player-details {
+                background-color: #f4f4f4;
+                padding: 0 20px;
+                display: flex;
+                border-radius: 10px;
+                flex: 1;
+                flex-direction: column;
+                align-items: center;
+                justify-content: space-around;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.151),
+                    0 6px 6px rgba(0, 0, 0, 0.123);
+            }
+
+            .your-status {
+                display: block;
+                width: 80%;
+                min-height: 80vh;
+                margin: auto;
+
+                /* min-height: 60vh; */
+                background-color: #f4f4f4;
+                padding: 50px;
+                border-radius: 10px;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19),
+                    0 6px 6px rgba(0, 0, 0, 0.23);
+            }
+
+            .ques {
+                display: flex;
+                flex-direction: column;
+                min-height: 180px;
+                margin-bottom: 20px;
+            }
+
+            .ques div {
+                width: 80%;
+                line-height: 140%;
+                margin-left: 10%;
+                text-align: center;
+                font-weight: bold;
+                font-size: 150%;
+                letter-spacing: 0.15rem;
+                height: max-content;
+                padding: 20px;
+            }
+
+            .ques p {
+                color: #54b454;
+            }
+
+            .Card div {
+                width: 60%;
+                margin-left: 20%;
+                display: flex;
+                justify-content: space-evenly;
+            }
+
+            .msg-box {
+                display: flex;
+                justify-content: center;
+                margin-top: 20px;
+            }
+
+            .msg-box .input-field {
+                width: 50%;
+                margin-right: 20px;
+            }
+
+            .all-players {
+            }
+
+            .play {
+                display: flex;
+                align-items: center;
+                width: 60%;
+                justify-content: center;
+            }
+
+            .clock,
+            .play h5,
+            .play h4 {
+                margin-right: 20px;
+            }
+
+            .recent-msg {
+                width: 80%;
+                margin-left: 10%;
+            }
+
+            .recent-msg div {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .recent-msg h5 {
+                letter-spacing: 0.1rem;
+                color: rgb(99, 99, 99);
+            }
+
+            .recent-msg h6 {
+                letter-spacing: 0.05rem;
+                color: rgb(99, 99, 99);
+                font-size: 70%;
+            }
+
+            .comments {
+                margin-top: 20px;
+                border: 1px solid rgb(97, 97, 97);
+                padding: 20px 0;
+            }
+
+            .comments h5 {
+                color: rgb(100, 100, 100);
+                font-size: 120%;
+            }
+
+            .recent-msg h3 {
+                margin-top: 10px;
+                letter-spacing: 0.1rem;
+                color: rgb(99, 99, 99);
+                font-size: 100%;
+                text-align: start;
+                border-left: 2px solid;
+                padding: 10px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <noscript>You need to enable JavaScript to run this app.</noscript>
+        <div id="root"></div>
+        <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
 
@@ -38,6 +323,5 @@
 
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
-    -->
-  </body>
+    --></body>
 </html>
