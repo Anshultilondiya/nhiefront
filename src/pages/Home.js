@@ -20,6 +20,7 @@ class Home extends Component {
             username: false,
             code: false,
         },
+        creator: false,
     };
 
     validator = new SimpleReactValidator();
@@ -31,6 +32,7 @@ class Home extends Component {
             showJoin: false,
             copied: false,
             showCreate: true,
+            creator: true,
         });
     };
     joinGame = () => {
@@ -53,7 +55,7 @@ class Home extends Component {
 
         let letsPlayButton = (
             <Link
-                to={`/game?&name=${this.state.username}&room=${this.state.gameCode}`}
+                to={`/game?&name=${this.state.username}&room=${this.state.gameCode}&creator=${this.state.creator}`}
             >
                 <Button
                     className="btn"

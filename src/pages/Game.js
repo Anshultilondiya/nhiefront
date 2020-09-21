@@ -25,16 +25,20 @@ class Game extends Component {
         sender: '',
         time: '',
         received: '',
+        creator: false,
     };
 
     endpoint = 'https://nhieserver.herokuapp.com';
     socket = io(this.endpoint);
     componentDidMount() {
-        const { name, room } = queryString.parse(window.location.search);
+        const { name, room, creator } = queryString.parse(
+            window.location.search
+        );
         this.setState({
             you: name,
             gamecode: room,
             category: Object.keys(this.state.questions),
+            creator: creator,
         });
         console.log({ name, room });
         this.socket.emit('join', { name, room }, () => {});
@@ -83,6 +87,7 @@ class Game extends Component {
 
     next = (d) => {
         // console.log(d);
+
         if (d[2] === '30' || d[2] === '00') {
             let n = this.getRandomInt(0, this.state.category.length);
             let cat = this.state.category[n];
@@ -115,6 +120,12 @@ class Game extends Component {
             this.socket.emit('send-to-all', message, () => {});
         }
         this.setState({ message: '' });
+    };
+
+    creatorhandler = (creator, d) => {
+        if (creator) {
+            this.next(d);
+        }
     };
 
     render() {
@@ -150,7 +161,7 @@ class Game extends Component {
                                 timezone={'US/Pacific'}
                                 onChange={(date) => {
                                     var d = date.output.split(':');
-                                    this.next(d);
+                                    this.creatorhandler(this.state.creator, d);
                                 }}
                             />
                         </h5>
@@ -191,7 +202,8 @@ class Game extends Component {
                                     <div className="ques">
                                         <p>
                                             A new question will be prompted
-                                            every 0th or 30th second
+                                            every <br />
+                                            00th, 20th, 40th second
                                         </p>
                                         <div>
                                             {!this.state.currentQue ? (
